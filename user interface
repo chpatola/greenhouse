@@ -1,0 +1,68 @@
+
+import java.util.Scanner;
+
+
+public class UserInterface {
+    private final Kasvihuone kasvihuone = new Kasvihuone();
+    
+    
+    public void kaynnista(Scanner lukija) {
+        kaynnistaU(lukija);
+        System.out.println();
+       
+    }    
+     private void kaynnistaU(Scanner lukija) {
+        System.out.println("Kasvihuone!");
+        System.out.println();
+ 
+        while (true) {
+            System.out.println("x = lopeta");
+            System.out.println("1 = lisää");
+            System.out.println("2 = tulosta nimen perusteella järjestettynä");
+            System.out.println("3 = kasvata tietyn nimistä");
+            System.out.println("4 = tulosta pituuden perusteella järjestettynä");
+            System.out.println("5 = kasvata kaikkia");
+ 
+            System.out.print("> ");
+            String vastaus = lukija.nextLine();
+ 
+            if (vastaus.equals("1")) {
+                lisaaKasvi(lukija);
+            } else if (vastaus.equals("2")) {
+                System.out.println("Tulostetaan kasvit nimen perusteella järjestettynä");
+               kasvihuone.tulostaNimenP();
+            } 
+            else if (vastaus.equals("3")) {
+                kasvataTiettynen(lukija);
+            } else if(vastaus.equals("4")){
+                System.out.println("Tulostetaan kasvit pituuden perusteella järjestettynä");
+               kasvihuone.tulostaPituudenP();
+            }
+             else if(vastaus.equals("5")){
+                kasvihuone.kasvattaaKaikki();
+            }
+            else if (vastaus.equals("x")) {
+                break;
+            }
+        }
+        
+        
+    }
+
+    private void lisaaKasvi(Scanner lukija) {
+        System.out.println("Minkä niminen kasvi lisätään?");
+        String nimi = lukija.nextLine();
+        System.out.println("Minkä pituinen kasvi on nyt?");
+        int pituus = Integer.parseInt(lukija.nextLine());
+        System.out.println("Mikä on kasvin maksimipituus?");
+        int maksipituus = Integer.parseInt(lukija.nextLine());
+        Kasvi kasven = new Kasvi(nimi, pituus, maksipituus);
+        kasvihuone.addKasvi(kasven);
+    }
+    private void kasvataTiettynen(Scanner lukija) {
+        System.out.println("Minkä nimistä kasvia kasvatetaan?1");
+        String nimi = lukija.nextLine();
+        kasvihuone.kasvataTietty(nimi);
+    }
+
+}
