@@ -1,0 +1,51 @@
+
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Comparator;
+import java.util.List;
+
+
+public class Kasvihuone {
+    private List<Kasvi> mykasvit;
+    
+    public Kasvihuone(){
+        this.mykasvit = new ArrayList<>();
+    }
+    public void addKasvi(Kasvi kasvi){
+        if(mykasvit.contains(kasvi)){
+            System.out.println("Kasvi on jo aikaisemmin lisätty!");
+        }
+        mykasvit.add(kasvi);
+    }
+    public void kasvataTietty(String kasvinimi){
+        for(Kasvi kasse :mykasvit){
+            if(kasse.getNimi().equals(kasvinimi)){
+                kasse.kasvata();
+            }
+            
+        }
+    }
+    public void kasvattaaKaikki(){
+        mykasvit.stream()
+                .forEach(kasse -> kasse.kasvata());
+    }
+    public void tulostaPituudenP(){
+      mykasvit.stream().sorted().forEach(k -> System.out.println(k));
+
+    }
+    public void tulostaNimenP(){
+         mykasvit.stream().sorted(new Comparator<Kasvi>() {
+             @Override
+             public int compare(Kasvi h1, Kasvi h2) {
+                 return h1.getNimi().compareTo(h2.getNimi());
+             }
+         }).forEach(k -> System.out.println(k));
+
+    }
+  
+        
+    }
+    
+    
+    
+
