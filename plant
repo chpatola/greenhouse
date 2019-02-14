@@ -1,0 +1,82 @@
+
+import java.util.Objects;
+
+
+public class Kasvi implements Comparable<Kasvi>{
+    private String nimi;
+    private int pituus;
+    private int maxpituus;
+    
+    public Kasvi(String nimi, int pituus, int maxpituus){
+        this.nimi = nimi;
+        this.pituus=pituus;   
+        this.maxpituus= maxpituus;
+    }
+    
+    public void kasvata(){
+        if(pituus==maxpituus){
+            System.out.println("Kasvi ei voi enää kasvaa, se on jo saavuttanut maksipituudensa!");
+        }
+        this.pituus= pituus+1;
+    }
+
+    public String getNimi() {
+        return nimi;
+    }
+
+    public int getPituus() {
+        return pituus;
+    }
+    
+    @Override
+    public String toString() {
+        return nimi+", pituus: "+ pituus;
+    }
+
+    @Override
+    public int hashCode() {
+        int hash = 7;
+        hash = 47 * hash + Objects.hashCode(this.nimi);
+        hash = 47 * hash + this.pituus;
+        hash = 47 * hash + this.maxpituus;
+        return hash;
+    }
+
+    @Override
+    public boolean equals(Object obj) {
+        if (this == obj) {
+            return true;
+        }
+        if (obj == null) {
+            return false;
+        }
+        if (getClass() != obj.getClass()) {
+            return false;
+        }
+        final Kasvi other = (Kasvi) obj;
+        if (this.pituus != other.pituus) {
+            return false;
+        }
+        if (this.maxpituus != other.maxpituus) {
+            return false;
+        }
+        if (!Objects.equals(this.nimi, other.nimi)) {
+            return false;
+        }
+        return true;
+    }
+
+    @Override
+    public int compareTo(Kasvi o) {
+        if (this.pituus == o.getPituus()) {
+            return 0;
+        } else if (this.pituus > o.getPituus()) {
+            return 1;
+        } else {
+            return -1;
+        }
+    }
+    
+    
+    
+}
