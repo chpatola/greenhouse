@@ -1,0 +1,13 @@
+
+import java.util.Scanner;
+
+public class KonekoeTehtava3 {
+
+    public static void main(String[] args) {
+        UserInterface usse = new UserInterface();
+        Scanner lukija = new Scanner(System.in);
+        usse.kaynnista(lukija);
+
+    }
+
+}
